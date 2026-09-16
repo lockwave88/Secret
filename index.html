@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>🔐 Офлайн Шифратор</title>
+  <title>🔐 Offline Encoder</title>
   <style>
     :root {
       --bg: #ffffff;
@@ -58,23 +58,23 @@
 </head>
 <body>
 
-  <h2>🔐 Офлайн Шифратор</h2>
+  <h2>🔐 Offline Encoder</h2>
 
   <div class="theme-switcher">
-    <button onclick="setTheme('light')">☀️ Світла тема</button>
-    <button onclick="setTheme('dark')">🌙 Темна тема</button>
+    <button onclick="setTheme('light')">☀️ Light mode</button>
+    <button onclick="setTheme('dark')">🌙 Dark mode</button>
   </div>
 
-  <label>Текст або шифр:</label>
-  <textarea id="message" rows="4" placeholder="Привіт, як справи?"></textarea>
+  <label>Text or code:</label>
+  <textarea id="message" rows="4" placeholder="Hello. how are you?"></textarea>
 
-  <label>Пароль:</label>
-  <input type="text" id="password" placeholder="Введи пароль">
+  <label>Password:</label>
+  <input type="text" id="password" placeholder="Enter password">
 
-  <button onclick="encryptText()">🔒 Зашифрувати</button>
-  <button onclick="decryptText()">🔓 Розшифрувати</button>
+  <button onclick="encryptText()">🔒 Encrypt</button>
+  <button onclick="decryptText()">🔓 Decrypt</button>
 
-  <label>Результат:</label>
+  <label>Result:</label>
   <textarea id="result" rows="4" readonly></textarea>
 
   <script>
