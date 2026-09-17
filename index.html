@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="uk">
+
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>🔐 Offline Encoder</title>
@@ -13,47 +14,50 @@
       --error: #ffcccc;
     }
 
-    body {
-      font-family: sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      padding: 20px;
-      max-width: 700px;
-      margin: auto;
-    }
+```
+body {
+  font-family: sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 20px;
+  max-width: 700px;
+  margin: auto;
+}
 
-    textarea, input, button {
-      width: 100%;
-      font-size: 16px;
-      padding: 10px;
-      margin: 10px 0;
-      box-sizing: border-box;
-      background-color: var(--input-bg);
-      color: var(--text);
-      border: 1px solid #ccc;
-    }
+textarea, input, button {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  background-color: var(--input-bg);
+  color: var(--text);
+  border: 1px solid #ccc;
+}
 
-    input.error, textarea.error {
-      background-color: var(--error);
-      border: 1px solid red;
-    }
+input.error, textarea.error {
+  background-color: var(--error);
+  border: 1px solid red;
+}
 
-    button {
-      background-color: var(--btn-bg);
-      color: var(--btn-text);
-      border: none;
-      cursor: pointer;
-    }
+button {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  cursor: pointer;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+button:hover {
+  opacity: 0.9;
+}
 
-    .theme-switcher {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
+.theme-switcher {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+```
+
   </style>
 </head>
 <body>
@@ -65,16 +69,16 @@
     <button onclick="setTheme('dark')">🌙 Dark mode</button>
   </div>
 
-  <label>Text or code:</label>
-  <textarea id="message" rows="4" placeholder="Hello. how are you?"></textarea>
+<label>Text or code:</label>
 
-  <label>Password:</label>
-  <input type="text" id="password" placeholder="Enter password">
+  <textarea id="message" rows="4" placeholder="Hello, how are you?"></textarea>
 
-  <button onclick="encryptText()">🔒 Encrypt</button>
-  <button onclick="decryptText()">🔓 Decrypt</button>
+<label>Password:</label> <input type="text" id="password" placeholder="Enter password">
 
-  <label>Result:</label>
+<button onclick="encryptText()">🔒 Encrypt</button> <button onclick="decryptText()">🔓 Decrypt</button>
+
+<label>Result:</label>
+
   <textarea id="result" rows="4" readonly></textarea>
 
   <script>
@@ -99,13 +103,14 @@
         msg.classList.add("error");
         valid = false;
       }
+
       if (pass.value.trim() === "") {
         pass.classList.add("error");
         valid = false;
       }
 
       if (!valid) {
-        alert("Будь ласка, заповни всі поля!");
+        alert("Please fill in all fields!");
       }
 
       return valid;
@@ -118,10 +123,12 @@
       const pass = document.getElementById("password").value;
 
       let encrypted = "";
+
       for (let i = 0; i < msg.length; i++) {
         const m = msg.charCodeAt(i);
         const p = pass.charCodeAt(i % pass.length);
         const code = (m + p) % 65535;
+
         encrypted += String.fromCharCode(code);
       }
 
@@ -135,18 +142,21 @@
       const pass = document.getElementById("password").value;
 
       let decoded;
+
       try {
         decoded = fromBase64(input);
       } catch {
-        alert("Це не схоже на шифр.");
+        alert("This does not appear to be a valid cipher.");
         return;
       }
 
       let decrypted = "";
+
       for (let i = 0; i < decoded.length; i++) {
         const e = decoded.charCodeAt(i);
         const p = pass.charCodeAt(i % pass.length);
         const code = (e - p + 65535) % 65535;
+
         decrypted += String.fromCharCode(code);
       }
 
@@ -155,22 +165,24 @@
 
     function setTheme(mode) {
       const root = document.documentElement;
-      if (mode === 'dark') {
-        root.style.setProperty('--bg', '#1e1e1e');
-        root.style.setProperty('--text', '#ffffff');
-        root.style.setProperty('--input-bg', '#333333');
-        root.style.setProperty('--btn-bg', '#4444cc');
-        root.style.setProperty('--btn-text', '#ffffff');
-        root.style.setProperty('--error', '#662222');
+
+      if (mode === "dark") {
+        root.style.setProperty("--bg", "#1e1e1e");
+        root.style.setProperty("--text", "#ffffff");
+        root.style.setProperty("--input-bg", "#333333");
+        root.style.setProperty("--btn-bg", "#4444cc");
+        root.style.setProperty("--btn-text", "#ffffff");
+        root.style.setProperty("--error", "#662222");
       } else {
-        root.style.setProperty('--bg', '#ffffff');
-        root.style.setProperty('--text', '#000000');
-        root.style.setProperty('--input-bg', '#f0f0f0');
-        root.style.setProperty('--btn-bg', '#007bff');
-        root.style.setProperty('--btn-text', '#ffffff');
-        root.style.setProperty('--error', '#ffcccc');
+        root.style.setProperty("--bg", "#ffffff");
+        root.style.setProperty("--text", "#000000");
+        root.style.setProperty("--input-bg", "#f0f0f0");
+        root.style.setProperty("--btn-bg", "#007bff");
+        root.style.setProperty("--btn-text", "#ffffff");
+        root.style.setProperty("--error", "#ffcccc");
       }
     }
   </script>
+
 </body>
 </html>
